@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <div className='app'>
         <h1>number two page</h1>
-        {moment().format('MMMM Do YYYY, h:mm:ss a')}
+        <div>{moment().format('MMMM Do YYYY, h:mm:ss a')}</div>
       </div>
     );
   }
