@@ -15,6 +15,8 @@ export default class PortfolioContainer extends Component {
                 { title: "Swing Away" }
             ]
         };
+
+        this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this)
     }
 
     PortfolioItems(){
