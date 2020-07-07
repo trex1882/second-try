@@ -10,10 +10,10 @@ export default class PortfolioContainer extends Component {
     }
 
     PortfolioItems(){
-        const data = ["Quip", "EventBright", "Ministry Safe"];
+        const data = ["Quip", "EventBright", "Ministry Safe", "Swing Away"];
 
         return data.map(item => {
-            return <PortfolioItem />;
+            return <h1>{item}</h1>;
         })
     }
 
@@ -21,6 +21,8 @@ export default class PortfolioContainer extends Component {
         return (
             <div>
                 <h2>Portfolio items go here...</h2>
+
+                {this.PortfolioItems()}
             </div>
 
             
