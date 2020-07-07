@@ -8,6 +8,7 @@ export default class PortfolioContainer extends Component {
 
         this.state = {
             pageTitle: "Welcome to my portfolio",
+            isLoding: false,
             data: [
                 { title: "Quip", category: "eCommerce" },
                 { title: "EventBright", category: "Scheuduling" },
@@ -35,6 +36,9 @@ export default class PortfolioContainer extends Component {
 
 
     render() {
+        if (this.state.isLoding) {
+            return <div>Loading...</div>;
+        }
         return (
             <div>
                 <h2>{this.state.pageTitle}</h2>
