@@ -7,9 +7,10 @@ export default class App extends Component {
   render() {
     return (
       <div className='app'>
+        
         <h1>number two page</h1>
-        <PortfolioContainer />
         <div>{moment().format('MMMM Do YYYY, h:mm:ss a')}</div>
+        <PortfolioContainer />
       </div>
     );
   }
