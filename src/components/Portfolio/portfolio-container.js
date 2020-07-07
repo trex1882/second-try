@@ -13,7 +13,7 @@ export default class PortfolioContainer extends Component {
         const data = ["Quip", "EventBright", "Ministry Safe", "Swing Away"];
 
         return data.map(item => {
-            return <h1>{item}</h1>;
+            return <PortfolioItem title={item} url={"google.com"} />;
         })
     }
 
