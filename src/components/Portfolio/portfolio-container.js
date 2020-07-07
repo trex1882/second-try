@@ -6,23 +6,39 @@ export default class PortfolioContainer extends Component {
     constructor() {
         super();
 
-        console.log("Redered")
+        this.state = {
+            pageTitle: "Welcome to my portfolio",
+            data: [
+                { title: "Quip" },
+                { title: "EventBright" },
+                { title: "Ministry Safe" },
+                { title: "Swing Away" }
+            ]
+        };
     }
 
     PortfolioItems(){
-        const data = ["Quip", "EventBright", "Ministry Safe", "Swing Away"];
+           return this.state.data.map(item => {
+            return <PortfolioItem title={item.title} url={"google.com"} />;
+        })
+    }
 
-        return data.map(item => {
-            return <PortfolioItem title={item} url={"google.com"} />;
+    handlePageTitleUpdate() {
+        this.setState({
+            pageTitle: "Something else"
         })
     }
 
     render() {
         return (
             <div>
-                <h2>Portfolio items go here...</h2>
+                <h2>{this.state.pageTitle}</h2>
 
                 {this.PortfolioItems()}
+
+                <hr/>
+
+                <button onClick ={this.handlePageTitleUpdate}>Change Title</button>
             </div>
 
             
