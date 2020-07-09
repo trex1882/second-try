@@ -28,6 +28,19 @@ export default class PortfolioContainer extends Component {
          })
     }
 
+    getPortfolioItems() {
+        axios.get('https://jacobcolby.devcamp.space/portfolio/portfolio_items')
+        .then(response => {
+          console.log (response);
+          this.setState( {
+              data: response.data.portfolio_items
+          })
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      }
+
     PortfolioItems(){
            return this.state.data.map(item => {
             return <PortfolioItem title={item.title} url={"google.com"} />;
