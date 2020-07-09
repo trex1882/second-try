@@ -1,73 +1,74 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import axios from "axios";
 
 import PortfolioItem from "./portfolio-item";
 
 export default class PortfolioContainer extends Component {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.state = {
-            pageTitle: "Welcome to my portfolio",
-            isLoding: false,
-            data: [
-                { title: "Quip", category: "eCommerce" },
-                { title: "EventBright", category: "Scheuduling" },
-                { title: "Ministry Safe", category: "Enterprise" },
-                { title: "Swing Away", category: "eCommerce" }
-            ]
-        };
+    this.state = {
+      pageTitle: "Welcome to my portfolio",
+      isLoading: false,
+      data: []
+    };
 
-        this.handleFiler=this.handleFiler.bind(this);
-    }
+    this.handleFilter = this.handleFilter.bind(this);
+  }
 
-    handleFiler(filter) {
+  handleFilter(filter) {
+    this.setState({
+      data: this.state.data.filter(item => {
+        return item.category === filter;
+      })
+    });
+  }
+
+  getPortfolioItems() {
+    axios
+      .get("https://jacobcolby.devcamp.space/portfolio/portfolio_items")
+      .then(response => {
         this.setState({
-            data: this.state.data.filter(item => {
-                return item.category === filter;
-            })
-         })
-    }
-
-    getPortfolioItems() {
-        axios.get('https://jacobcolby.devcamp.space/portfolio/portfolio_items')
-        .then(response => {
-          console.log (response);
-          this.setState( {
-              data: response.data.portfolio_items
-          })
-        })
-        .catch(error => {
-          console.log(error);
+          data: response.data.portfolio_items
         });
-      }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
-    PortfolioItems(){
-           return this.state.data.map(item => {
-            return <PortfolioItem title={item.title} url={"google.com"} />;
-        })
+  portfolioItems() {
+    return this.state.data.map(item => {
+        console.log ("portfolio item", item)
+      return <PortfolioItem title={item.name} url={item.url} slug={item.id} />;
+    });
+  }
+
+  componentDidMount() {
+    this.getPortfolioItems();
+  }
+
+  render() {
+    if (this.state.isLoading) {
+      return <div>Loading...</div>;
     }
 
+    return (
+      <div>
+        <h2>{this.state.pageTitle}</h2>
 
-    render() {
-        if (this.state.isLoding) {
-            return <div>Loading...</div>;
-        }
-        return (
-            <div>
-                <h2>{this.state.pageTitle}</h2>
+        <button onClick={() => this.handleFilter("eCommerce")}>
+          eCommerce
+        </button>
+        <button onClick={() => this.handleFilter("Scheduling")}>
+          Scheduling
+        </button>
+        <button onClick={() => this.handleFilter("Enterprise")}>
+          Enterprise
+        </button>
 
-                <button onClick={() => this.handleFiler('eCommerce')}>eCommerce
-                </button>
-                <button onClick={() => this.handleFiler('Scheuduling')}>Scheuduling
-                </button>
-                <button onClick={() => this.handleFiler('Enterprise')}>Enterprise
-                </button>
-
-                {this.PortfolioItems()}
-
-            </div>
-
-            
-        )
-    }
+        {this.portfolioItems()}
+      </div>
+    );
+  }
 }
