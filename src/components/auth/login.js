@@ -7,9 +7,26 @@ export default class Login extends Component {
       <div>
         <h1>LOGIN TO ACCESS YOUR DASHBOARD</h1>
 
-        <form>
-          <input type="text" />
-          <input type="password" />
+        <form onSubmit={this.handleSubmit}>
+          <input
+           type="email"
+           name="email"
+           placeholder="Your email"
+           value={this.state.email}
+           onChange={this.handleSubmit}
+            />
+
+            <input
+           type="password"
+           name="password"
+           placeholder="Your password"
+           value={this.state.password}
+           onChange={this.handleSubmit}
+            />
+
+            <div>
+              <button type="submit">Log In</button>
+            </div>
         </form>
       </div>
     );
