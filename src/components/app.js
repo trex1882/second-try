@@ -20,7 +20,18 @@ export default class App extends Component {
 
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/auth" component={Auth} />
+
+              <Route
+                path="/auth"
+                render={props => (
+                  <Auth
+                    {...props}
+                    handleSuccessfulLogin={this.handleSuccessfulLogin}
+                    handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                  />
+                )}
+              />
+
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/blog" component={Blog} />
