@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const NavigationComponent = props => {
   const dynamicLink = (route, linkText) => {
@@ -10,6 +11,10 @@ const NavigationComponent = props => {
         </NavLink>
       </div>
     );
+  };
+
+  const handleSignOut = () => {
+    axios.delete("https://api.devcamp.space/logout", {withCredentials: true})
   };
 
   return (
