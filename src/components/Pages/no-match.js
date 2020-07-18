@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 export default function() {
     return (
         <div>
-            <h2>No Match</h2>
+            <h2>We couldn't find that page</h2>
             <Link to="/">Return to home page</Link>
         </div>
     );
