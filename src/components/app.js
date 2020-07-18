@@ -36,7 +36,6 @@ export default class App extends Component {
     });
   }
 
-
   handleSuccessfulLogout() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN"
@@ -74,9 +73,7 @@ export default class App extends Component {
   }
 
   authorizedPages() {
-    return [
-      <Route path="/blog" component={Blog} />
-    ]
+    return [<Route path="/blog" component={Blog} />];
   }
 
   render() {
@@ -85,9 +82,9 @@ export default class App extends Component {
         <Router>
           <div>
             <NavigationContainer
-             loggedInStatus={this.state.loggedInStatus}
-             handleSuccessfulLogout={this.handleSuccessfulLogout}
-              />
+              loggedInStatus={this.state.loggedInStatus}
+              handleSuccessfulLogout={this.handleSuccessfulLogout}
+            />
 
             <h2>{this.state.loggedInStatus}</h2>
 
@@ -107,7 +104,9 @@ export default class App extends Component {
 
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
-              {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages(): null}
+              {this.state.loggedInStatus === "LOGGED_IN" ? (
+                this.authorizedPages()
+              ) : null}
               <Route
                 exact
                 path="/portfolio/:slug"
